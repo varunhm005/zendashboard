@@ -18,9 +18,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 connectDB();
 // Routes
 const studentRoutes = require('./Routes/studentRoute');
-const mentorRoutes = require('./Routes/mentorRoute');
+const taskRoutes = require('./Routes/taskRoute');
 const loginRoutes = require('./Routes/loginRoute');
 const dashboardRoutes = require('./Routes/dashboardRoute');
+const leaderboardRoutes = require('./Routes/leaderboardRoute');
+const placementboardRoutes = require('./Routes/placementboardRoute');
+const interviewRoutes = require('./Routes/interviewRoute');
+const requirementRoutes = require('./Routes/requirementRoute')
+const capstoneRoutes = require('./Routes/capstoneRoute')
+const queryRoutes = require('./Routes/queryRoute')
+const leaveRoutes = require('./Routes/leaveRoute')
+const portfolioRoutes = require('./Routes/portfolioRoute')
 
 app.use((req, res, next) => {
     if (req.url === '/login') {
@@ -29,9 +37,18 @@ app.use((req, res, next) => {
     authMiddleware.myMiddleware(req, res, next);
   });
 app.use('/student', studentRoutes);
-app.use('/mentor', mentorRoutes);
+app.use('/task', taskRoutes);
 app.use('/login',loginRoutes)
 app.use('/dashboard',dashboardRoutes)
+app.use('/leaderboard',leaderboardRoutes)
+app.use('/placementboard',placementboardRoutes)
+app.use('/interview',interviewRoutes)
+app.use('/requirement',requirementRoutes)
+app.use('/capstone',capstoneRoutes)
+app.use('/query',queryRoutes)
+app.use('/leave',leaveRoutes)
+app.use('/portfolio',portfolioRoutes)
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });

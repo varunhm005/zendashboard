@@ -1,8 +1,8 @@
-const requirementDal = require('../Dal/requirementDal');
+const capstoneDal = require('../Dal/capstoneDal');
 
-async function createRequirement(req, res) {
+async function createCapstone(req, res) {
     try {
-        let result = await requirementDal.createRequirement(req.body)
+        let result = await capstoneDal.createCapstone(req.body)
         if (!result.status) {
             return res.send({ code: 400, status: false, message: result.message })
         }
@@ -13,10 +13,10 @@ async function createRequirement(req, res) {
     }
 }
 
-async function getRequirement(req, res) {
-    try {
 
-        let result = await requirementDal.getRequirement(req.body)
+async function getAllCapstone(req, res) {
+    try {
+        let result = await capstoneDal.getAllCapstone()
         if (!result.status) {
             return res.send({ code: 400, status: false, message: result.message })
         }
@@ -27,4 +27,7 @@ async function getRequirement(req, res) {
     }
 }
 
-module.exports = { createRequirement, getRequirement };
+
+
+
+module.exports = { createCapstone, getAllCapstone };

@@ -1,8 +1,8 @@
-const requirementDal = require('../Dal/requirementDal');
+const leaderboardDal = require('../Dal/leaderboardDal');
 
-async function createRequirement(req, res) {
+async function createLeaderboard(req, res) {
     try {
-        let result = await requirementDal.createRequirement(req.body)
+        let result = await leaderboardDal.createLeaderboard(req.body)
         if (!result.status) {
             return res.send({ code: 400, status: false, message: result.message })
         }
@@ -13,10 +13,10 @@ async function createRequirement(req, res) {
     }
 }
 
-async function getRequirement(req, res) {
-    try {
 
-        let result = await requirementDal.getRequirement(req.body)
+async function getAllLeaderboard(req, res) {
+    try {
+        let result = await leaderboardDal.getAllLeaderboard()
         if (!result.status) {
             return res.send({ code: 400, status: false, message: result.message })
         }
@@ -27,4 +27,7 @@ async function getRequirement(req, res) {
     }
 }
 
-module.exports = { createRequirement, getRequirement };
+
+
+
+module.exports = { createLeaderboard, getAllLeaderboard };

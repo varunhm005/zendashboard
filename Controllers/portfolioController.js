@@ -1,8 +1,9 @@
-const requirementDal = require('../Dal/requirementDal');
+const portfolioDal = require('../Dal/portfolioDal');
 
-async function createRequirement(req, res) {
+async function createPortfolio(req, res) {
     try {
-        let result = await requirementDal.createRequirement(req.body)
+        
+        let result = await portfolioDal.createPortfolio(req.body)
         if (!result.status) {
             return res.send({ code: 400, status: false, message: result.message })
         }
@@ -13,13 +14,14 @@ async function createRequirement(req, res) {
     }
 }
 
-async function getRequirement(req, res) {
-    try {
 
-        let result = await requirementDal.getRequirement(req.body)
+async function getPortfolio(req, res) {
+    try {
+        let result = await portfolioDal.getPortfolio()
         if (!result.status) {
             return res.send({ code: 400, status: false, message: result.message })
         }
+
         return res.send({ code: 200, status: true, message: result.message, data: result.data })
 
     } catch (error) {
@@ -27,4 +29,4 @@ async function getRequirement(req, res) {
     }
 }
 
-module.exports = { createRequirement, getRequirement };
+module.exports = { createPortfolio, getPortfolio };

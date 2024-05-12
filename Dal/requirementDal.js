@@ -15,27 +15,10 @@ async function createRequirement(data) {
     }
 }
 
-async function checkRequirementExists(data) {
-    try {
-        let query = {studentName : data.studentName}
-
-        let result = await requirementModel.aggregate()
-            .match(query)
-
-        if (result.length > 0) {
-            return { code: 202, status: false, message: "Data already exists", data: result }
-        }
-        return { code: 200, status: true, message: "Data not found", data: {} }
-
-    } catch (err) {
-        return { code: 500, status: false, message: err.message }
-    }
-}
-
 async function getRequirement(req, res) {
     try {
 
-        let result = await requirementModel.find({hasAssigned:0})
+        let result = await requirementModel.find()
         if (!result) {
             return { code: 400, status: false, message: "Failed" }
         }
@@ -46,4 +29,4 @@ async function getRequirement(req, res) {
     }
 }
 
-module.exports = { createRequirement, checkRequirementExists, getRequirement };
+module.exports = { createRequirement, getRequirement };
