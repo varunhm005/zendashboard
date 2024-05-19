@@ -29,6 +29,7 @@ const capstoneRoutes = require('./Routes/capstoneRoute')
 const queryRoutes = require('./Routes/queryRoute')
 const leaveRoutes = require('./Routes/leaveRoute')
 const portfolioRoutes = require('./Routes/portfolioRoute')
+const codekataRoutes = require('./Routes/codekataRoute')
 
 app.use((req, res, next) => {
     if (req.url === '/login') {
@@ -48,6 +49,7 @@ app.use('/capstone',capstoneRoutes)
 app.use('/query',queryRoutes)
 app.use('/leave',leaveRoutes)
 app.use('/portfolio',portfolioRoutes)
+app.use('/codekata',codekataRoutes)
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
