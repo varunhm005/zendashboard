@@ -1,10 +1,10 @@
-const codekataDal = require('../Dal/codekataDal');
+const webkataDal = require('../Dal/webkataDal');
 const moment = require('moment-timezone');
 
 
-async function createCodekata(req, res) {
+async function createWebkata(req, res) {
     try {
-        let result = await codekataDal.createCodekata(req.body)
+        let result = await webkataDal.createWebkata(req.body)
         if (!result.status) {
             return res.send({ code: 400, status: false, message: result.message })
         }
@@ -16,9 +16,9 @@ async function createCodekata(req, res) {
 }
 
 
-async function getAllCodekata(req, res) {
+async function getAllWebkata(req, res) {
     try {
-        let result = await codekataDal.getAllCodekata(req.query)
+        let result = await webkataDal.getAllWebkata(req.query)
         if (!result.status) {
             return res.send({ code: 400, status: false, message: result.message })
         }
@@ -63,4 +63,4 @@ async function getAllCodekata(req, res) {
 
 
 
-module.exports = { createCodekata, getAllCodekata };
+module.exports = { createWebkata, getAllWebkata };

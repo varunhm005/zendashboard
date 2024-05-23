@@ -1,12 +1,12 @@
-const codekataModel = require('../Models/codekataModel');
+const webkataModel = require('../Models/webkataModel');
 const mongoose = require('mongoose');
 
-async function createCodekata(data) {
+async function createWebkata(data) {
     try {
-        let payload = new codekataModel(data)
+        let payload = new webkataModel(data)
         let result = await payload.save()
         if (result) {
-            return { code: 200, status: true, message: "Pointscreated successfully", data: result }
+            return { code: 200, status: true, message: "Points created successfully", data: result }
         }
         return { code: 202, status: false, message: "Error while creating mentor", data: {} }
 
@@ -15,18 +15,18 @@ async function createCodekata(data) {
     }
 }
 
-async function getAllCodekata(payload) {
+async function getAllWebkata(payload) {
     try {
         if (!payload.from && !payload.to) {
             return { code: 204, status: false, message: "From and to date is required" }
         }
 
-        let overallPointsData = codekataModel.aggregate().group({
+        let overallPointsData = webkataModel.aggregate().group({
             _id: null,
             overallPoints: { $sum: "$points" },
         })
 
-        let resultData = codekataModel.aggregate().match({
+        let resultData = webkataModel.aggregate().match({
             $and: [
                 { date: { $gte: new Date(payload.from) } },
                 { date: { $lte: new Date(payload.to) } }
@@ -42,7 +42,7 @@ async function getAllCodekata(payload) {
 
 
         if (result) {
-            return { code: 200, status: true, message: "Codekata details fetched successfully", data: { overallPoints: overallPoints[0].overallPoints, pointDetails: result } }
+            return { code: 200, status: true, message: "Webkata details fetched successfully", data: { overallPoints: overallPoints[0].overallPoints, pointDetails: result } }
         }
         return { code: 202, status: false, message: "Error while creating mentor", data: {} }
 
@@ -52,4 +52,4 @@ async function getAllCodekata(payload) {
 }
 
 
-module.exports = { createCodekata, getAllCodekata };
+module.exports = { createWebkata, getAllWebkata };
