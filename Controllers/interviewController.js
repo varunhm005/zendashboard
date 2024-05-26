@@ -29,8 +29,6 @@ async function getAllInterview(req, res) {
             id: count+1
         }));
 
-        console.log("doubledNumbers",datas)
-
         return res.send({ code: 200, status: true, message: result.message, data: datas })
 
     } catch (error) {

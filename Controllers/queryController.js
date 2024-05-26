@@ -29,7 +29,6 @@ async function getAllQuery(req, res) {
             createdAt: formatDate(data.createdAt)
         }));
 
-        console.log("doubledNumbers",datas)
         return res.send({ code: 200, status: true, message: result.message, data: datas })
 
     } catch (error) {
@@ -60,7 +59,6 @@ function formatDate(dateString) {
 // Example usage:
 const dateString = '2024-05-12T09:43:02.622Z';
 const formattedDate = formatDate(dateString);
-console.log(formattedDate);
 
 
 

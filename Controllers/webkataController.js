@@ -1,7 +1,6 @@
 const webkataDal = require('../Dal/webkataDal');
 const moment = require('moment-timezone');
 
-
 async function createWebkata(req, res) {
     try {
         let result = await webkataDal.createWebkata(req.body)
@@ -23,12 +22,12 @@ async function getAllWebkata(req, res) {
             return res.send({ code: 400, status: false, message: result.message })
         }
 
-        let startDate = moment(req.query.from)
-        let endDate = moment(req.query.to)
+        let startDate = req.query.from
+        let endDate = req.query.to
 
         let allDates = [];
 
-        let currentDay = startDate.clone();
+        let currentDay = moment(startDate).clone().utc();
         while (currentDay.isSameOrBefore(endDate, 'day')) {
             allDates.push({ date: currentDay.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]'), day: currentDay.format('dddd'), points: 0 });
             currentDay.add(1, 'days');

@@ -31,6 +31,7 @@ const leaveRoutes = require('./Routes/leaveRoute')
 const portfolioRoutes = require('./Routes/portfolioRoute')
 const codekataRoutes = require('./Routes/codekataRoute')
 const webkataRoutes = require('./Routes/webkataRoute')
+const additionalSessionRoutes = require('./Routes/additionalSessionRoute')
 
 app.use((req, res, next) => {
     if (req.url === '/login') {
@@ -52,6 +53,7 @@ app.use('/leave',leaveRoutes)
 app.use('/portfolio',portfolioRoutes)
 app.use('/codekata',codekataRoutes)
 app.use('/webkata',webkataRoutes)
+app.use('/additionals',additionalSessionRoutes)
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
