@@ -34,7 +34,7 @@ const webkataRoutes = require('./Routes/webkataRoute')
 const additionalSessionRoutes = require('./Routes/additionalSessionRoute')
 
 app.use((req, res, next) => {
-    if (req.url === '/login') {
+    if (req.url === '/login' || req.url === '/login/createUser') {
       return next(); // Skip middleware and continue to next middleware or route handler
     }
     authMiddleware.myMiddleware(req, res, next);
