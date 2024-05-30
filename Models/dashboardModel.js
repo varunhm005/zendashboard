@@ -7,7 +7,12 @@ const dashboardSchema = new mongoose.Schema({
     sessionName: { type: String, required: true },
     sessionDescription: { type: String, required: true },
     sessionContents: { type: String, required: true },
-    sessionPreRead: { type: String, required: false }
+    sessionPreRead: { type: String, required: false },
+    activity: {type: Boolean, default: false},
+    taskName: { type: String, required: true },
+    taskTags: { type: String, required: true },
+    frontEnd: {type: Boolean, default: false},
+    backEnd: {type: Boolean, default: false}
 });
 
 const SessionRoadMap = mongoose.model('sessionRoadMap', dashboardSchema);
