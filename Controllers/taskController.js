@@ -1,11 +1,23 @@
 const taskDal = require('../Dal/taskDal');
+const dashboardDal = require('../Dal/dashboardDal')
 
 async function createTask(req, res) {
     try {
+
+        if(!req.body.sessionDay){
+            return res.send({ code: 400, status: false, message: "Session Day is required" })
+        }
+
         let result = await taskDal.createTask(req.body)
         if (!result.status) {
             return res.send({ code: 400, status: false, message: result.message })
         }
+
+        let updateSession = await dashboardDal.updateSessionTaskStatus(req.body.sessionDay)
+        if (!updateSession.status) {
+            return res.send({ code: 400, status: false, message: result.message })
+        }
+
         return res.send({ code: 200, status: true, message: result.message, data: result.data })
 
     } catch (error) {

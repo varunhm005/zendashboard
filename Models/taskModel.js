@@ -9,6 +9,9 @@ const taskSchema = new mongoose.Schema({
     studentComments: { type: String, required: false },
     frontendSourceCode: { type: String, required: false },
     frontendDeployedUrl: { type: String, required: false },
+    backendSourceCode: { type: String, required: false },
+    backendDeployedUrl: { type: String, required: false },
+    graded: { type: Boolean, default: false},
 
 });
 

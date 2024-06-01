@@ -12,7 +12,8 @@ const dashboardSchema = new mongoose.Schema({
     taskName: { type: String, required: true },
     taskTags: { type: String, required: true },
     frontEnd: {type: Boolean, default: false},
-    backEnd: {type: Boolean, default: false}
+    backEnd: {type: Boolean, default: false},
+    taskSubmitted: {type: Boolean, default: false}
 });
 
 const SessionRoadMap = mongoose.model('sessionRoadMap', dashboardSchema);

@@ -16,8 +16,8 @@ async function addSessionDetails(data) {
 }
 
 async function getAllSession(day) {
-try {
-        let result = await dashboardModel.findOne({sessionDay: day})
+    try {
+        let result = await dashboardModel.findOne({ sessionDay: day })
         if (result) {
             return { code: 200, status: true, message: "Session fetched successfully", data: result }
         }
@@ -28,4 +28,21 @@ try {
     }
 }
 
-module.exports = { addSessionDetails, getAllSession };
+async function updateSessionTaskStatus(day) {
+    try {
+        let findQuery = { sessionDay: day }
+
+        let update = { taskSubmitted: true }
+
+        let result = await dashboardModel.findOneAndUpdate(findQuery, { $set: update }, { returnDocument: "after" })
+        if (result) {
+            return { code: 200, status: true, message: "Session updated successfully", data: result }
+        }
+        return { code: 202, status: false, message: "Failed", data: {} }
+
+    } catch (err) {
+        return { code: 500, status: false, message: err.message }
+    }
+}
+
+module.exports = { addSessionDetails, getAllSession, updateSessionTaskStatus };
