@@ -5,7 +5,7 @@ const taskSchema = new mongoose.Schema({
     // Define your document schema here
     taskName: { type: String, required: true },
     submittedDate: { type: String, required: true },
-    taskMark: { type: String, required: true },
+    taskMark: { type: String, required: false },
     studentComments: { type: String, required: false },
     frontendSourceCode: { type: String, required: false },
     frontendDeployedUrl: { type: String, required: false },
