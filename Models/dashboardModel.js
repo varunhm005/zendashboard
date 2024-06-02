@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const dashboardSchema = new mongoose.Schema({
     // Define your document schema here
@@ -13,7 +14,8 @@ const dashboardSchema = new mongoose.Schema({
     taskTags: { type: String, required: true },
     frontEnd: {type: Boolean, default: false},
     backEnd: {type: Boolean, default: false},
-    taskSubmitted: {type: Boolean, default: false}
+    taskSubmitted: {type: Boolean, default: false},
+    taskId: {type: Schema.Types.ObjectId, ref: 'task'}
 });
 
 const SessionRoadMap = mongoose.model('sessionRoadMap', dashboardSchema);

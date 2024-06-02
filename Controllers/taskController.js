@@ -13,7 +13,9 @@ async function createTask(req, res) {
             return res.send({ code: 400, status: false, message: result.message })
         }
 
-        let updateSession = await dashboardDal.updateSessionTaskStatus(req.body.sessionDay)
+        let payload  = { taskSubmitted: true, taskId: result.data._id  }
+
+        let updateSession = await dashboardDal.updateSessionTaskStatus(req.body.sessionDay, payload)
         if (!updateSession.status) {
             return res.send({ code: 400, status: false, message: result.message })
         }

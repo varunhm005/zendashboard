@@ -28,11 +28,11 @@ async function getAllSession(day) {
     }
 }
 
-async function updateSessionTaskStatus(day) {
+async function updateSessionTaskStatus(day,payload) {
     try {
         let findQuery = { sessionDay: day }
 
-        let update = { taskSubmitted: true }
+        let update = payload
 
         let result = await dashboardModel.findOneAndUpdate(findQuery, { $set: update }, { returnDocument: "after" })
         if (result) {
