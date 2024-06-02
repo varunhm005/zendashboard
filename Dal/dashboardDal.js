@@ -17,10 +17,15 @@ async function addSessionDetails(data) {
 
 async function getAllSession(day) {
     try {
-        let result = await dashboardModel.findOne({ sessionDay: day }).populate('tasks')
-        if (result) {
-            return { code: 200, status: true, message: "Session fetched successfully", data: result }
+        let result = await dashboardModel.aggregate()
+            .match({ sessionDay: +day })
+            .lookup({ from: 'tasks', localField: 'taskId', foreignField: '_id', as: 'tasks' })
+            .exec()
+
+        if (result.length > 0) {
+            return { code: 200, status: true, message: "Session fetched successfully", data: result[0] }
         }
+        
         return { code: 202, status: false, message: "Failed", data: {} }
 
     } catch (err) {
@@ -28,7 +33,7 @@ async function getAllSession(day) {
     }
 }
 
-async function updateSessionTaskStatus(day,payload) {
+async function updateSessionTaskStatus(day, payload) {
     try {
         let findQuery = { sessionDay: day }
 

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-mongoose.set('strictPopulate', false); 
 
 const dashboardSchema = new mongoose.Schema({
     // Define your document schema here
