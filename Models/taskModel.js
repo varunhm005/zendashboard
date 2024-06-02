@@ -12,7 +12,6 @@ const taskSchema = new mongoose.Schema({
     backendSourceCode: { type: String, required: false },
     backendDeployedUrl: { type: String, required: false },
     graded: { type: Boolean, default: false},
-
 });
 
 const Mentor = mongoose.model('task', taskSchema);
