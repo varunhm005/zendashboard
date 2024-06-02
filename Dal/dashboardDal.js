@@ -17,7 +17,7 @@ async function addSessionDetails(data) {
 
 async function getAllSession(day) {
     try {
-        let result = await dashboardModel.findOne({ sessionDay: day })
+        let result = await dashboardModel.findOne({ sessionDay: day }).populate('tasks')
         if (result) {
             return { code: 200, status: true, message: "Session fetched successfully", data: result }
         }

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+mongoose.set('strictPopulate', false); 
 
 const taskSchema = new mongoose.Schema({
     // Define your document schema here
